@@ -31,14 +31,8 @@ def dec12():
             direction = new_direction(direction, a, v)
         else:
             pos[a] += v
-    if pos["E"] > pos["W"]:
-        ew = pos["E"] - pos["W"]
-    else:
-        ew = pos["W"] - pos["E"]
-    if pos["N"] > pos["S"]:
-        ns = pos["N"] - pos["S"]
-    else:
-        ns = pos["S"] - pos["N"]
+    ew = max((pos["E"],pos["W"])) - min((pos["E"],pos["W"]))
+    ns = max((pos["N"],pos["S"])) - min((pos["N"],pos["S"]))
     return ew + ns
 
 
