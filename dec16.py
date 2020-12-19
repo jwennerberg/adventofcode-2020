@@ -52,15 +52,19 @@ def get_input(input_file):
                 data["nearby"].append(list(map(int, l.split(","))))
     return data
 
+def find_field(n, fields):
+    res = [ f for f in fields if n in fields[f] ]
+    return ",".join(res)
+
 def dec16():
-    t = get_input_v2("input/dec16.tmp")
+    t = get_input_v2("input/dec16")
     all_fields = [ f for fields in t["fields"].values() for f in fields ]
     nonvalid = { k:nv for k,n in enumerate(t["nearby"]) for nv in n if nv not in all_fields }
     print(sum(nonvalid.values()))
-    valid = [ v for k,v in enumerate(t["nearby"]) if k not in nonvalid.keys() ] 
-    print(valid)
 
-
+    #valid = [ v for k,v in enumerate(t["nearby"]) if k not in nonvalid.keys() ]
+    #in_order = [ find_field(x, t["fields"]) for n in valid for x in n ]
+    #print(in_order)
 
 if __name__ == '__main__':
     dec16()
